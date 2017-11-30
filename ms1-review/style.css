@@ -10,6 +10,11 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h1:hover {
+    transform: translate(-1, 1);
+    animation-duration: 1s;
+}
+
 .bow-close {
     background-image: url(img/rainbow1.jpeg);
 }
@@ -38,5 +43,10 @@ h1 {
     border-radius: 15%;
 }
 
+.monkey-fied {
+    background-image: url("img/dog-monkey.jpeg") !important;
+}
 
-
+.horse-fied {
+    background-image: url("img/horse-rainbow.jpeg") !important;
+}
