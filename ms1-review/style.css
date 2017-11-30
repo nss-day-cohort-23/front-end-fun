@@ -1,34 +1,52 @@
 body {
-  background: #8fbc8f;
-  box-sizing: border-box;
+    background: black;
+    box-sizing: border-box;
+    color: white;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1:hover {
+    transform: translate(-1, 1);
+    animation-duration: 1s;
 }
 
 .bow-close {
-  background-image: url("img/rainbow1.jpeg");
+    background-image: url(img/rainbow1.jpeg);
 }
+
 .bow-double {
-  background-image: url("img/rainbow2.jpeg");
+    background-image: url(img/rainbow2.jpeg);
 }
+
 .bow-flash {
-  background-image: url("img/rainbow3.jpeg");
+    background-image: url(img/rainbow3.jpeg);
 }
 
 .card {
-  /* display: inline-block; */
-  float: left;
-  width: 30%;
-  height: 150px;
-  border: 2px solid;
-  margin-right: 10px;
-  background-size: cover;
+    display: inline-block;
+    float: left;
+    width: 30%;
+    height: 250px;
+    border: 2px solid black;
+    margin-right: 10px;
+    background-size: cover;
+    filter: invert(100%)
 }
 
 .fancy-border {
-  border-width: 4px;
-  border-color: orange;
-  border-radius: 5px;
+    border: 2px solid aqua;
+    border-radius: 15%;
+}
+
+.monkey-fied {
+    background-image: url("img/dog-monkey.jpeg") !important;
+}
+
+.horse-fied {
+    background-image: url("img/horse-rainbow.jpeg") !important;
 }
