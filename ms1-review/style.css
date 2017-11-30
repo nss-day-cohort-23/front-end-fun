@@ -1,42 +1,63 @@
 body {
-  background: #8fbc8f;
-  box-sizing: border-box;
+    margin: 0;
+    background: darkturquoise;
+    box-sizing: border-box;
+    
 }
 
 h1 {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* justify-content: center; */
 }
-
-.bow-close {
-  background-image: url("img/rainbow1.jpeg");
+h1#dogH1,
+h1#rainbowH1 {
+    text-align: center;
 }
-.bow-double {
-  background-image: url("img/rainbow2.jpeg");
-}
-.bow-flash {
-  background-image: url("img/rainbow3.jpeg");
+#monkeyfy,
+#horsefy {
+    padding: 20px;
+    display: block;
+    margin: 15px auto;
 }
 
 .card {
-  /* display: inline-block; */
-  float: left;
-  width: 30%;
-  height: 150px;
-  border: 2px solid;
-  margin-right: 10px;
-  background-size: cover;
+    width: 29%;
+    height: 300px;
+    border: 8px solid;
+    margin-right: 10px;
+    background-size: cover;
+    padding: 10px;
+}
+
+.content {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
 .fancy-border {
-  border-width: 4px;
-  border-color: orange;
-  border-radius: 5px;
+    border: 8px solid lightpink;
+    border-radius: 20px;
 }
+.fancy-border2 {
+    border: 8px solid gold;
+    border-radius: 15%;
+}
+.box-border {
+    border:10px solid lightpink;
+}
+.box-border2 {
+    border: 10px solid gold;
+}
+section.monkey {
+    width: 100px;
+}
+
 
 .monkey-fied {
-  background-image: url("img/dog-monkey.jpeg") !important;
+    background-image: url("img/dog-monkey.jpeg") !important;
 }
-
 .horse-fied {
-  background-image: url("img/horse-rainbow.jpeg") !important;
+    background-image: url("img/rambo.jpg") !important;
 }
