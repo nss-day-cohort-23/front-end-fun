@@ -47,43 +47,51 @@ module.exports.getTypes = () => {
   });
 };
 
-},{"jquery":4}],2:[function(require,module,exports){
+},{"jquery":5}],2:[function(require,module,exports){
 "use strict";
 
 // Format the data
+// Untangle the array of arrays and make the data ready to present to the user
+
+// Mutate the products array:
+//   Add "category" key to each item
+//   Change "type" val from integer to string value, ie "fragmentation"
+// From this:
+// "fairy_sparklers": {
+//       "id": 0,
+//       "type": 0,
+//       "name": "Fairy Sparklers",
+//       "description": "Multi-colored sparklers that are safe for any age."
+//     }
+
+//     To this:
+// "fairy_sparklers": {
+//       "id": 0,
+//       "type": "personal",
+//       "name": "Fairy Sparklers",
+//       "description": "Multi-colored sparklers that are safe for any age.",
+//       category: "fireworks"
+//     }
 
 module.exports.formatData = data => {
   console.log("our data", data);
-  // Untangle the array of arrays and make the data ready to present to the user
 
-  // Mutate the products array:
-  //   Add "category" key to each item
-  //   Change "type" val from integer to string value, ie "fragmentation"
-  // From this:
-  // "fairy_sparklers": {
-  //       "id": 0,
-  //       "type": 0,
-  //       "name": "Fairy Sparklers",
-  //       "description": "Multi-colored sparklers that are safe for any age."
-  //     }
+  const products = data[2];
+  const types = data[1];
+  const cats = data[0];
 
-  //     To this:
-  // "fairy_sparklers": {
-  //       "id": 0,
-  //       "type": "personal",
-  //       "name": "Fairy Sparklers",
-  //       "description": "Multi-colored sparklers that are safe for any age.",
-  //       category: "fireworks"
-  //     }
+  let revisedProds = products.map(prod => {
+    let currentProd = Object.keys(prod)[0]; // ie "fairy_sparklers"
+    let prodType = types.find(type => type.id === prod[currentProd].type);
+    let prodCat = cats.find(category => category.id === prodType.category);
 
-  let revisedProds = data[2].map(prod => {
-    for (let prop in prod) {
-      prod[prop].category = "new thing";
-      prod[prop].type = "blowy up thing"; //data[1]   where prod[prop].type ===
-    }
-    return prod;
+    prod[currentProd].type = prodType.name;
+    prod[currentProd].category = prodCat.name;
+
+    return prod; //remember, this return is for the map method, not for our formatData function
   });
   console.log("revised", revisedProds);
+  return revisedProds;
 };
 
 },{}],3:[function(require,module,exports){
@@ -92,15 +100,12 @@ module.exports.formatData = data => {
 // UI interface w/dropdown
 // Grab the selected value
 
-
-
-// Display the appropriate data to the user
-
 console.log("Acme Explosives");
 
 const $ = require("jquery");
 const factory = require("./factory");
 const formatter = require('./formatter');
+const prodView = require('./prodView');
 
 const acmeData = [];
 
@@ -134,13 +139,34 @@ let promArr = [
 ];
 Promise.all(promArr)
 .then( (dataArr) => {
-  formatter.formatData(dataArr);
+  let formattedData = formatter.formatData(dataArr);
+  prodView.displayProducts(formattedData);
 })
 .catch( (err) => {
   console.log(err);
 });
 
-},{"./factory":1,"./formatter":2,"jquery":4}],4:[function(require,module,exports){
+},{"./factory":1,"./formatter":2,"./prodView":4,"jquery":5}],4:[function(require,module,exports){
+"use strict";
+
+const $ = require("jquery");
+
+module.exports.displayProducts = products => {
+  console.log("products", products);
+  products.forEach((prod) => {
+    let prodKey = Object.keys(prod)[0];
+    console.log("prodKey", prodKey);
+    let currentProd = prod[prodKey];
+    let productString = `
+      <h4>${currentProd.name}</h4>
+      <h5>category: ${currentProd.category} type: ${currentProd.type}</h5>
+      <p>${currentProd.description}</p>
+    `;
+    $("#products").append(productString);
+  });
+};
+
+},{"jquery":5}],5:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
